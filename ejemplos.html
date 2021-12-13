@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let nombreMio = 'Agus';
+        let apellido = "QZ";
+        let saludo = `"hola " nombreMio`;
+        console.log(nombreMio, apellido, saludo);
+        console.error('Mensaje de error');
+        console.clear();
+
+        const nums = [1, 2, 3, 4, 5],
+            vocals = ["a", "e", "i", "o", "u"];
+        const gato = {
+            nombre: "Pepe",
+            dueña: "Vale",
+            Mama: "Lula",
+            Papa: "Bruno"
+        }
+        console.table(nums);
+        console.table(vocals);
+        console.table(gato);
+        console.clear();
+
+        console.time('inicia el cronometro');
+        const arreglo = Array(1000);
+        for (let i = 0;
+            i < arreglo.length;
+            i++) {
+            arreglo[i] = i;
+        }
+        console.timeEnd('inicia el cronometro');
+        console.log(arreglo);
+        console.clear();
+
+        console.log(Date());
+        console.clear();
+
+        // funcion anonima autoejecutable
+
+        (function(){
+            
+        })();
+
+
+    </script>
+</body>
+
+</html>
