@@ -278,22 +278,103 @@ class Pelicula {
         this.genero = genero;
         this.calificacion = calificacion;
 
-        this.validarIMBD(id);
+        this.validarIMDB(id);
+        this.validarTitulo(titulo);
+        this.validarDirector(director);
+        this.validarEstreno(estreno);
+        this.validarPais(pais);
     }
+
+    // atributo estatico obtenedor o get
+    static get listaGeneros() {
+        return ["Action", "Adult", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film Noir", "Game-Show", "History", "Horror", "Musical", "Music", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Short", "Sport", "Talk-Show", "Triller", "War", "Western"];
+    }
+    // metodo estatico
+    static generosAceptados () {
+        return console.info(`Los generos aceptados son:\n${Pelicula.listaGeneros.join(", ")}`)
+    }
+
     //funciones
     validarCadena(propiedad, valor) {
         if(!valor)
             return console.warn(`${propiedad} "${valor}" esta vacio.`)
         if(typeof(valor) !== "string")
             return console.error("Debe ser un texto")
+        return true;
     }
+
+    validarLongitudCadena(propiedad, valor, longitud) {
+        if(valor.length>longitud)
+            return console.error(`${propiedad} "${valor}" excede el numero de caracteres permitidos (${longitud}).`);
+        return true;
+    }
+
+    validarNumero(propiedad, valor) {
+        if(!valor)
+            return console.warn(`${propiedad} "${valor}" esta vacio.`)
+        if(typeof(valor) !== "number")
+            return console.error("Debe ser un numero.")
+        return true;
+    }
+
+    validarArreglo(propiedad, valor) {
+        if(!valor)
+            return console.warn(`${propiedad} "${valor}" esta vacio.`)
+        if(!(valor instanceof Array))
+            return console.error(`${propiedad}: Debe ser un arreglo`);
+        if(valor.length === 0)
+            return console.error("Esta vacio");
+        for(let cadena of valor) {
+            if(typeof cadena !== "string")
+                return console.error(`${cadena}: debe ser una cadena de texto`);
+        }
+        return true;
+    }
+
     //metodos
-    validarIMBD(id){
-        if(this.validarCadena("IMBD id", id)) {
-            if() {
-                return console.error(`El Imm`)
+    validarIMDB(id){
+        if(this.validarCadena("codigoId", id)) {
+            //expresion para validar el codigo del id
+            if(!(/^([a-z]){2}([0-9]){7}$/.test(id))) {
+                return console.error(`CodigoId: "${id}" no es valido, se compone de 9 caracteres, los primeros 2 letras y los 7 finales numeros.`)
             }
         }
 
     }
+
+    validarTitulo(titulo){
+        if(this.validarCadena("Titulo", titulo))
+            this.validarLongitudCadena("Titulo", titulo, 100);
+    }
+
+    validarDirector(director){
+        if(this.validarCadena("Director", director))
+            this.validarLongitudCadena("Director", director, 50);
+    }
+
+    validarEstreno(estreno){
+        if(this.validarNumero("Año estreno", estreno)) {
+            //expresion para validar el año de estreno
+            if(!(/^([0-9]){4}$/.test(estreno))) {
+                return console.error(`Año de estreno: "${estreno}" no es valido, se compone de 4 numeros.`)
+            }
+        }
+
+    }
+
+    validarPais(pais) {
+        this.validarArreglo("Pais", pais);
+    }
 }
+
+//Ver genenor aceptados
+Pelicula.generosAceptados();
+
+//creacion de la pelicula
+const pelicula = new Pelicula({
+    id: "az1234567",
+    titulo: "Titulo pelicula 1",
+    director: "Agustin Quiceno",
+    estreno: 2021,
+    pais: ["japon", "australia", "hawai"]
+});
