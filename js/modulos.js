@@ -82,14 +82,24 @@ multiplicarStr("Hola Agus");
 
 /*5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
 ---------------mi solucion----------------------------------------------*/
-
+const invertirStr = (str = "") =>
+    (!str)
+        ?console.warn("No se han ingresado cadenas de texto")
+        :console.info(str.split("").reverse().join(""))
+//invocar la funcion
+invertirStr("Hola Agus");
 /*-----------solucion optima--------------------------------------------*/
 
 
 
 /*6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
 ---------------mi solucion----------------------------------------------*/
-
+const contarCoincidencias = (str = "", clave = undefined) =>
+    (!str)
+        ?console.warn("No se han ingresado cadenas de texto")
+        :console.info(str.)
+//invocar la funcion
+contarCoincidencias("Hola Agus");
 /*-----------solucion optima--------------------------------------------*/
 
 
